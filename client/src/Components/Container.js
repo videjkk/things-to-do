@@ -3,9 +3,9 @@ import './css/Container.css'
 
 const Container = (props) => {
 
- return <div>
+ return <div className="container">
 
- </div>
+ </div>;
 }
 
 export default Container
