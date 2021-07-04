@@ -12,12 +12,12 @@ const App = () => {
       .then((response) => response.json())
       .then((data) => setTask(data));
     // .catch(err => );
-  }, [task]);
-
+  }, []);
+  console.log(task)
   if (!task) {
     return (
       <div className="wrapper">
-        <div class="lds-ring">
+        <div className="lds-ring">
           <div></div>
           <div></div>
           <div></div>

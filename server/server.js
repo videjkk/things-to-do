@@ -133,10 +133,10 @@ const createTasks = (amount) => {
 
 app.use(cors());
 
-
+createTasks(200);
 
 app.get("/", (_req, res) => {
-  res.json(createTasks(200));
+  res.json(list);
 });
 
 app.listen(PORT, () => {
