@@ -1,6 +1,20 @@
+* {
+    outline: none;
+}
 .container{
     height:100vh;
     margin: 60px;
     background: #1C1C1C;
     border-radius: 10px;
+}
+.container-wrapper {
+    padding: 45px 63px;
+}
+.search-bar{
+    background: #2b2b2b;
+    border: none;
+    border-radius: 10px;
+    color: #b5b5b5;
+    padding: 10px;
+    width: 100%;
 }

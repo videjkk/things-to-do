@@ -13,7 +13,8 @@ const App = () => {
       .then((data) => setTask(data));
     // .catch(err => );
   }, []);
-  console.log(task)
+
+  
   if (!task) {
     return (
       <div className="wrapper">
