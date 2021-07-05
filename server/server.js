@@ -128,7 +128,6 @@ const createTasks = (amount) => {
     });
     count++;
   }
-  return list;
 };
 
 app.use(cors());

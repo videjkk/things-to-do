@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import { useState, useEffect } from "react";
 import "./Components/css/App.css";
 import Container from "./Components/Container";
+import ContainerHeader from "./Components/ContainerHeader";
+import Body from "./Components/Body";
 
 const App = () => {
   const [task, setTask] = useState(null);
@@ -14,20 +16,15 @@ const App = () => {
     // .catch(err => );
   }, []);
 
-  
   if (!task) {
     return (
-      <div className="wrapper">
-        <div className="lds-ring">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+      <div>
+        <ContainerHeader />
+        <Body />
       </div>
     );
   } else {
-    return <Container taskList={task}/>;
+    return <Container taskList={task} />;
   }
 };
 
