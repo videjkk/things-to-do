@@ -1,10 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { useState, useEffect } from "react";
-import "./Components/css/App.css";
-import Container from "./Components/Container";
-import ContainerHeader from "./Components/ContainerHeader";
-import Body from "./Components/Body";
+import Loading from './Components/Loading';
+import Container from './Components/Container';
 
 const App = () => {
   const [task, setTask] = useState(null);
@@ -17,14 +15,9 @@ const App = () => {
   }, []);
 
   if (!task) {
-    return (
-      <div>
-        <ContainerHeader />
-        <Body />
-      </div>
-    );
+    return <Loading />
   } else {
-    return <Container taskList={task} />;
+    return <Container tasks={task}/> 
   }
 };
 
