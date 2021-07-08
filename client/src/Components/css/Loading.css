@@ -1,28 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-* {
-    font-family: 'Raleway', sans-serif;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    background: #212121;
+.loading{
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(25,25,25,1) 0%, rgba(63,63,63,1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-#root{ 
-    position: relative;
-}
-.loader {
-    display: inline;
-    position: absolute;
-    left: 50vw;
-    top: 50vh;
-    border: 8px solid #424246; /* Light grey */
-    border-top: 8px solid #f1f1f1; /* Blue */
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    background-color: #f1f1f1;
+    border-radius: 100%;  
+    -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+    animation: sk-scaleout 1.0s infinite ease-in-out;
   }
   
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  @-webkit-keyframes sk-scaleout {
+    0% { -webkit-transform: scale(0) }
+    100% {
+      -webkit-transform: scale(1.0);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes sk-scaleout {
+    0% { 
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    } 100% {
+      -webkit-transform: scale(1.0);
+      transform: scale(1.0);
+      opacity: 0;
+    }
   }

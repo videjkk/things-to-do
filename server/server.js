@@ -124,7 +124,7 @@ const createTasks = (amount) => {
         id: i++,
         title: tasks[Math.trunc(Math.random()*100)],
         status: Math.random()*10 < 4 ? true : false,
-        priority: priority[Math.round(Math.random()*100)]
+        priority: priority[Math.round(Math.random())]
     });
     count++;
   }

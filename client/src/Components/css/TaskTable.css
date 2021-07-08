@@ -1,0 +1,24 @@
+.tasktable{
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+}
+.tasktable.header{
+    margin-top: 20px;
+}
+.tasktable > .id, .priority, .status{
+    padding-bottom: 10px;
+    text-align: center;
+}
+.span-priority {
+    border-radius: 10px;
+}
+.minor{
+    color: lightgreen;
+}
+.critical{
+    color: #DC143C;
+}
+.true{
+    
+}

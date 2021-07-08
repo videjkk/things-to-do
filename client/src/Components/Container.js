@@ -1,12 +1,14 @@
-import React from 'react';
+import React from "react";
+import "./css/Container.css"
+import Body from './Body'
 
-const Container = () => {
+const Container = (props) => {
+  return <div className="container">
+      <div className="container__header">
+          <p className="container__header-title">Things.do</p>
+      </div>
+      <Body tasks={props.tasks}/>
+  </div>;
+};
 
-    return (
-        <div className="container">
-            
-        </div>
-    );
-}
-
-export default Container; 
+export default Container;
