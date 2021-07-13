@@ -3,19 +3,18 @@ import "./css/TaskTable.css";
 
 const TaskTable = (props) => {
   
-  const [sortBy, setSortBy] = useState('title');
   const [sortOrder, setSortOrder] = useState(true);
 
- const sortTasks = useCallback(sortBy => {
-   setSortBy(sortBy);
+  const sortTasks = useCallback(sortBy => {
+
    setSortOrder(!sortOrder);
-   sortOrder ? 
-   props.tasks.sort( (a,b) => a[sortBy] > b[sortBy] ? 1 : -1 ) 
-   :
-   props.tasks.sort( (a,b) => a[sortBy] > b[sortBy] ? -1 : 1 ) 
+
+   sortOrder
+    ? props.tasks.sort( (a,b) => a[sortBy] > b[sortBy] ? 1 : -1 ) 
+    : props.tasks.sort( (a,b) => a[sortBy] > b[sortBy] ? -1 : 1 ) 
  },
  [sortOrder, props.tasks])
-  
+
   return (
     <>
       <div className="tasktable header">
@@ -26,8 +25,9 @@ const TaskTable = (props) => {
       </div>
       <div className="tasktable">
         {props.tasks.map( (task, index) => {
+
           return (
-            <div className="task">
+            <div key={index} className="task">
               <div className="title">{task.title}</div>
               <div className="id">{task.id}</div>
               <div className="priority">

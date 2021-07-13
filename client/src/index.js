@@ -12,7 +12,6 @@ const App = () => {
     fetch("http://localhost:4000")
       .then((response) => response.json())
       .then((data) => setTasks(data));
-    // .catch(err => );
   }, []);
 
   if (!tasks) {
