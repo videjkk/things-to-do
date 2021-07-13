@@ -13,7 +13,7 @@ const [searchResult, setSearchResult] = useState(props.tasks);
 
 useEffect(() => {
     setSearchResult(props.tasks.filter(task => task.title.toLowerCase().includes(search)))
-},[search])
+},[search, props.tasks])
 
 
     return(
