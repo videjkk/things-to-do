@@ -27,20 +27,20 @@ const TaskTable = (props) => {
       <div className="tasktable">
         {props.tasks.map( (task, index) => {
           return (
-            <>
-              <div key={task.title} className="title">{task.title}</div>
-              <div key={task.id} className="id">{task.id}</div>
-              <div key={task.priority} className="priority">
+            <div className="task">
+              <div className="title">{task.title}</div>
+              <div className="id">{task.id}</div>
+              <div className="priority">
                 <span className={`span-priority ${task.priority}`}>
                   {task.priority}
                 </span>
               </div>
-              <div key={task.status} className="status">
+              <div className="status">
                 <span className={`span-status ${task.status}`}>
                   {task.status ? "done" : "on hold"}
                 </span>
               </div>
-            </>
+            </div>
           );
         })}
       </div>
