@@ -1,6 +1,5 @@
 import React from "react";
 import "./css/Container.css";
-import Body from "./Body";
 import TaskTable from "./TaskTable";
 
 const Container = (props) => {
