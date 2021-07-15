@@ -1,31 +1,47 @@
-import React, { useState, useCallback } from "react";
-import "./css/TaskTable.css";
+import React, { useState, useCallback, useEffect } from 'react'
+import './css/TaskTable.css'
+import './css/Body.css'
 
 const TaskTable = (props) => {
+  const [tasksToShow, setTasksToShow] = useState(props.tasks.slice(0,10));
+  const [tasksCount, setTasksCount] = useState(20);
+  const [sortOrder, setSortOrder] = useState(false);
+  const [search, setSearch] = useState('')
+  const [searchResult, setSearchResult] = useState(tasksToShow)
   
-  const [sortOrder, setSortOrder] = useState(true);
-
   const sortTasks = useCallback(sortBy => {
+    setSortOrder(!sortOrder)
+    sortOrder
+    ? tasksToShow.sort( (a, b) => a[sortBy] > b[sortBy] ? 1 : -1)
+    : tasksToShow.sort( (a, b) => a[sortBy] > b[sortBy] ? -1 : 1)
+  },
+  [sortOrder, tasksToShow])
+  
+  const showMore = () => {
+    setTasksToShow(props.tasks.slice(0,tasksCount));
+    setTasksCount(tasksCount+10)
+  }
 
-   setSortOrder(!sortOrder);
+  useEffect(() => {
+    setSearchResult(tasksToShow.filter(task => task.title.toLowerCase().includes(search)))
+  }, [search, tasksToShow])
 
-   sortOrder
-    ? props.tasks.sort( (a,b) => a[sortBy] > b[sortBy] ? 1 : -1 ) 
-    : props.tasks.sort( (a,b) => a[sortBy] > b[sortBy] ? -1 : 1 ) 
- },
- [sortOrder, props.tasks])
-
+  const handleChange = (e) => {
+    setSearch(e.target.value)
+  }
   return (
     <>
+    <div className="body">
+          <input className='search' value={search} type="search" placeholder="Search a thing to do..." onChange={handleChange}/>
+      </div>
       <div className="tasktable header">
-        <div onClick={ () => sortTasks('title')} className={`title `}>title</div>
-        <div  onClick={ () => sortTasks('id')} className="id">id</div>
-        <div  onClick={ () => sortTasks('priority')} className="priority">priority</div>
-        <div  onClick={ () => sortTasks('status')} className="status">status</div>
+        <div onClick={ () => sortTasks('title')} className='title'>title</div>
+        <div onClick={ () => sortTasks('id')} className="id">id</div>
+        <div onClick={ () => sortTasks('priority')} className="priority">priority</div>
+        <div onClick={ () => sortTasks('status')} className="status">status</div>
       </div>
       <div className="tasktable">
-        {props.tasks.map( (task, index) => {
-
+        {searchResult.map((task, index) => {
           return (
             <div key={index} className="task">
               <div className="title">{task.title}</div>
@@ -37,15 +53,16 @@ const TaskTable = (props) => {
               </div>
               <div className="status">
                 <span className={`span-status ${task.status}`}>
-                  {task.status ? "done" : "on hold"}
+                  {task.status ? 'done' : 'on hold'}
                 </span>
               </div>
             </div>
-          );
+          )
         })}
+        <button onClick={() => showMore()} className="btn"> Show more</button>
       </div>
     </>
-  );
+  )
 };
 
-export default React.memo(TaskTable);
+export default React.memo(TaskTable)
