@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+
 
 const useDebounce = (func, ms) => {
     let timeout;
@@ -6,7 +6,7 @@ const useDebounce = (func, ms) => {
         const fnCall = () => {func.apply(this, arguments)}
         
         clearTimeout(timeout);
-        
+
         timeout = setTimeout(fnCall, ms)
     };
 
