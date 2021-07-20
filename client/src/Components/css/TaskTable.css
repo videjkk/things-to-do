@@ -7,33 +7,6 @@
 .tasktable.header{
     margin-top: 20px;
 }
-.task > .id, .priority, .status, .tasktable.header > .id, .priority, .status {
-    padding-bottom: 10px;
-    text-align: center;
-}
-.span-priority {
-    border-radius: 10px;
-}
-.minor{
-    color: lightgreen;
-}
-.critical{
-    color: #DC143C;
-}
-.task{
-    display: grid;
-    grid-template-columns: 3fr 1fr 1fr 1fr;
-}
-.button{
-    display: flex;
-    align-items: center;
-}
-.btn {
-    padding: 10px;
-    background-color: #000;
-    border: none;
-    border-radius: 10px;
-    font-size: 24px;
-    
-
+.tasktable.header *{
+    cursor: pointer
 }
