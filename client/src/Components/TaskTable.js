@@ -4,6 +4,7 @@ import "./css/Body.css";
 import useDebounce from "./use-debounce";
 import Button from "./css/styled-components/Button";
 import Task from "./Task";
+import Input from './css/styled-components/Input'
 
 const TaskTable = (props) => {
   const [tasksToShow, setTasksToShow] = useState(props.tasks.slice(0, 10));
@@ -42,12 +43,7 @@ const TaskTable = (props) => {
   return (
     <>
       <div className="body">
-        <input
-          className="search"
-          type="search"
-          placeholder="Search a thing to do..."
-          onChange={handleChange}
-        />
+        <Input searching={handleChange} />
       </div>
       <div className="tasktable header">
         <div onClick={() => sortTasks("title")}>title</div>
