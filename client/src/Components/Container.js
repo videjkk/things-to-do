@@ -1,6 +1,6 @@
-import React from "react";
-import "./css/Container.css";
-import TaskTable from "./TaskTable";
+import React from 'react'
+import './css/Container.css'
+import TaskTable from './TaskTable'
 
 const Container = (props) => {
   return (
@@ -8,9 +8,9 @@ const Container = (props) => {
       <div className="container__header">
         <p className="container__header-title">Things.do</p>
       </div>
-      <TaskTable tasks={props.tasks} />
+      <TaskTable />
     </div>
-  );
-};
+  )
+}
 
-export default Container;
+export default Container

@@ -1,67 +1,58 @@
-import React, { useState, useCallback, useEffect } from "react";
-import "./css/TaskTable.css";
-import "./css/Body.css";
-import useDebounce from "./use-debounce";
-import Button from "./css/styled-components/Button";
-import Task from "./Task";
+import React, { useState, useCallback } from 'react'
+import './css/TaskTable.css'
+import useDebounce from './use-debounce'
+import Button from './css/styled-components/Button'
+import Task from './Task'
 import Input from './css/styled-components/Input'
+import { useDispatch, useSelector } from 'react-redux'
+import { showMore, sortTasks } from '../redux/actions/tasksActions'
 
-const TaskTable = (props) => {
-  const [tasksToShow, setTasksToShow] = useState(props.tasks.slice(0, 10));
-  const [tasksCount, setTasksCount] = useState(20);
-  const [sortOrder, setSortOrder] = useState(false);
-  const [search, setSearch] = useState("");
-  const [searchResult, setSearchResult] = useState(tasksToShow);
-  const [color, setColor] = useState("#000");
+const TaskTable = () => {
+  const tasks = useSelector((state) => state.taskList)
+  const dispatch = useDispatch()
 
-  useEffect(() => {
-    setSearchResult(
-      tasksToShow.filter((task) => task.title.toLowerCase().includes(search))
-    );
-  }, [tasksToShow, search]);
+  const [search, setSearch] = useState()
+  const [order, setOrder] = useState(false)
 
-  const sortTasks = useCallback(
-    (sortBy) => {
-      setSortOrder(!sortOrder);
-      sortOrder
-        ? searchResult.sort((a, b) => (a[sortBy] > b[sortBy] ? 1 : -1))
-        : searchResult.sort((a, b) => (a[sortBy] > b[sortBy] ? -1 : 1));
+  const sortTask = useCallback(
+    (sortMethod) => {
+      setOrder(!order)
+      dispatch(sortTasks(tasks, order, sortMethod))
     },
-    [sortOrder, searchResult]
-  );
+    [dispatch, order, tasks]
+  )
 
-  const showMore = () => {
-    setTasksToShow(props.tasks.slice(0, tasksCount));
-    setTasksCount(tasksCount + 10);
-    setColor(`rgb(0, 0, ${tasksCount})`);
-  };
+  const show = () => {
+    dispatch(showMore(tasks))
+  }
 
   const handleChange = useDebounce((e) => {
-    setSearch(e.target.value);
-  }, 500);
+    setSearch(e.target.value.toLowerCase())
+  }, 700)
 
   return (
-    <>
-      <div className="body">
-        <Input searching={handleChange} />
-      </div>
+    <div className="body">
+      <Input searching={handleChange} />
       <div className="tasktable header">
-        <div onClick={() => sortTasks("title")}>title</div>
-        <div onClick={() => sortTasks("id")}>id</div>
-        <div onClick={() => sortTasks("priority")}>priority</div>
-        <div onClick={() => sortTasks("status")} >status</div>
+        <div onClick={() => sortTask('title')}>title</div>
+        <div onClick={() => sortTask('id')}>id</div>
+        <div onClick={() => sortTask('priority')}>priority</div>
+        <div onClick={() => sortTask('status')}>status</div>
       </div>
       <div className="tasktable">
-        {searchResult.map((task, index) => {
-          return <Task task={task} key={index} />;
-        })}
-        {!search && tasksCount > props.tasks.length 
-          ? ""
-          : <Button color={color} onClick={() => showMore()}>Show more</Button>
-        }
-      </div> 
-    </>
-  );
-};
+        {search
+          ? tasks
+              .filter((task) => task.title.toLowerCase().includes(search))
+              .map((task, index) => {
+                return <Task task={task} key={index} />
+              })
+          : tasks.map((task, index) => {
+              return <Task task={task} key={index} />
+            })}
+        {<Button onClick={show}>LOREM IPSUM</Button>}
+      </div>
+    </div>
+  )
+}
 
-export default React.memo(TaskTable);
+export default TaskTable
