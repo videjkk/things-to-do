@@ -5,5 +5,5 @@ function App ({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
 
-export default observer(App)
+export default App
 

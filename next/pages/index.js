@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import Container from './Container'
 import tasks from './store/tasks';
 
-const Index = observer(({showedTaskList, taskList}) => {
+const Index = ({showedTaskList, taskList}) => {
   tasks.setInitialStateShowed = showedTaskList;
   tasks.setInitialStateList = taskList;
     return (
@@ -12,7 +12,7 @@ const Index = observer(({showedTaskList, taskList}) => {
       </>
     )
   }
-)
+
 export default Index;
 
 export async function getServerSideProps() {
