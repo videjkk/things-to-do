@@ -6,7 +6,9 @@ import { observer } from 'mobx-react-lite'
 import tasks from './store/tasks'
 
 const App = observer(() => {
+
   useEffect(() => tasks.getTasks(), [])
+  
   if (tasks.isLoading) {
     return (
       <div className="loading">

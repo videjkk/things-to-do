@@ -110,6 +110,7 @@ const tasks = [
 ]
 
 const priority = ['minor', 'critical']
+
 const createTasks = (amount) => {
   let count = 1
   let i = 0

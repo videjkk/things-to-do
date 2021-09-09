@@ -1,5 +1,5 @@
 import React from 'react'
-import './css/Container.css'
+import tasks from './store/tasks'
 import TaskTable from './TaskTable'
 
 const Container = () => {

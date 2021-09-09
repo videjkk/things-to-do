@@ -3,8 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   output: {
-    path: path.join(__dirname, '/dist'),
-    filename: 'index.bundle.js'
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[contenthash].js'
   },
   devServer: {
     port: 3000,
@@ -15,7 +15,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /nodeModules/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader'
         }
