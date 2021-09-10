@@ -14,11 +14,11 @@ const Task = observer((props) => {
   
   const handleChange = useCallback((e) => {
     setTitle(e.target.value)
-  }, [])
+  }, [e.target.value])
 
   const idChangeHandler = useCallback(() => {
     tasks.changeId(props.index)
-  },[])
+  },[props.index])
 
 
   const onBlur = useCallback(() => {
